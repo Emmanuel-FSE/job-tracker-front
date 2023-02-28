@@ -4,6 +4,7 @@ import Header from "./Header";
 
 export default function Job() {
   let { id } = useParams();
+  let userId = localStorage.getItem("id");
 
   const [job, setJob] = useState([]);
   const [applications, setApplications] = useState([]);
@@ -20,7 +21,37 @@ export default function Job() {
       .then((data) => setApplications(data));
   }, [id]);
 
-  console.log(applications);
+  const [apply, setApply] = useState({
+    applicant_name: "",
+    // job_title: "",
+    description: "",
+    user_id: userId,
+    // job_id: "",
+  });
+
+  function applyJob(e) {
+    e.preventDefault();
+    let formData = { ...apply, job_title: job.title, job_id: job.id };
+    submit(formData);
+  }
+
+  function submit(data) {
+
+    fetch("http://localhost:9292/applications", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert("Application send successfully. Yaay!!")
+      })
+      .catch((error) => {
+        alert("There was an error processing your application!")
+      });
+  }
 
   return (
     <div className="bg-gray-400">
@@ -96,6 +127,68 @@ export default function Job() {
             })}
           </div>
         </div>
+      </div>
+      <div className="w-full p-10">
+        <form
+          onSubmit={applyJob}
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        >
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="applicant_name"
+            >
+              Your name
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="applicant_name"
+              type="text"
+              name="applicant_name"
+              placeholder="applicant_name"
+              value={apply.applicant_name}
+              onChange={(event) =>
+                setApply((prevState) => ({
+                  ...prevState,
+                  applicant_name: event.target.value,
+                }))
+              }
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="description"
+            >
+              description
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="description"
+              type="text"
+              name="description"
+              value={apply.description}
+              onChange={(event) =>
+                setApply((prevState) => ({
+                  ...prevState,
+                  description: event.target.value,
+                }))
+              }
+              required
+              placeholder="Why do you want this job"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-teal-500 font-bold text-gray-800 p-2 rounded-lg"
+          >
+            Submit Application
+          </button>
+        </form>
+        <p className="text-center text-gray-500 text-xs">
+          &copy;2020 Job Tracker. All rights reserved.
+        </p>
       </div>
     </div>
   );
