@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -8,11 +10,21 @@ function Login() {
 
   function handleLogin(event){
     event.preventDefault();
-    console.log(login);
+    fetch(`http://localhost:9292/users/${login.email}`)
+    .then(res => res.json())
+    .then(data => validateUser(data))
     setLogin({
         email: "",
         password: "",
       })
+  }
+
+  function validateUser(user){
+    if (user.password === login.password) {
+        setTimeout(() => navigate("/"), 2000);   
+    } else {
+        alert("Error during validation")
+    }
   }
   return (
     <section className="bg-gray-400">
