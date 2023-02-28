@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({userId}) {
   const navigate = useNavigate();
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
 
-  function handleLogin(event){
+  function handleLogin(event) {
     event.preventDefault();
     fetch(`http://localhost:9292/users/${login.email}`)
-    .then(res => res.json())
-    .then(data => validateUser(data))
+      .then((res) => res.json())
+      .then((data) => validateUser(data));
     setLogin({
-        email: "",
-        password: "",
-      })
+      email: "",
+      password: "",
+    });
   }
 
-  function validateUser(user){
+  function validateUser(user) {
     if (user.password === login.password) {
-        setTimeout(() => navigate("/"), 2000);   
+      userId(user.id);
+      setTimeout(() => navigate("/"), 2000);
     } else {
-        alert("Error during validation")
+      alert("Error during validation");
     }
   }
   return (
@@ -37,9 +38,7 @@ function Login() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
               Sign in to your account
             </h1>
-            <form
-            onSubmit={handleLogin} 
-            className="space-y-4 md:space-y-6">
+            <form onSubmit={handleLogin} className="space-y-4 md:space-y-6">
               <div>
                 <label
                   htmlFor="email"

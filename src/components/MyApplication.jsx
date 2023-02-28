@@ -4,11 +4,13 @@ import Header from "./Header";
 export default function Home() {
   const [applications, setApplications] = useState([]);
 
+  let userId = localStorage.getItem("id");
+
   useEffect(() => {
-    fetch("http://localhost:9292/applications")
+    fetch(`http://localhost:9292/users/applications/${userId}`)
       .then((res) => res.json())
       .then((data) => setApplications(data));
-  }, []);
+  }, [userId]);
 
 
   const applicationsDiv = applications.map((application) => {
@@ -35,10 +37,18 @@ export default function Home() {
     );
   });
 
+  const noApplications = (
+    <div className="mt-52 text-xl font-serif font-bold text-red-500">
+        <p>No applications available for you.</p>
+        <p>You have not applied for a job yet.</p>
+    </div>
+  )
+
   return (
     <div className="bg-gray-400">
       <Header />
       <div className="p-10 text-xl font-bold font-serif rounded shadow-lg">
+      <h1 className="text-3xl text-center mb-2 underline font-sans font-bold">My Applications Profile</h1>
         <p>
           Our team is committed to bringing you the latest and most up-to-date
           job listings from top employers, both locally and internationally. You
@@ -53,8 +63,10 @@ export default function Home() {
           track your application status.
         </p>
       </div>
+      <div>
+      </div>
       <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-        {applicationsDiv}
+        {applications.length > 0 ? applicationsDiv : noApplications}
       </div>
     </div>
   );
