@@ -5,7 +5,12 @@ export default function Home() {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:9292/jobs")
+    fetch("http://localhost:9292/jobs", {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => setJobs(data));
   }, []);

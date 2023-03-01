@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 export default function Job() {
   let { id } = useParams();
+  const navigate = useNavigate();
   let userId = localStorage.getItem("id");
 
   const [job, setJob] = useState([]);
@@ -23,10 +24,8 @@ export default function Job() {
 
   const [apply, setApply] = useState({
     applicant_name: "",
-    // job_title: "",
     description: "",
     user_id: userId,
-    // job_id: "",
   });
 
   function applyJob(e) {
@@ -36,8 +35,9 @@ export default function Job() {
   }
 
   function submit(data) {
-
-    fetch("http://localhost:9292/applications", {
+    
+    if (userId) {
+      fetch("http://localhost:9292/applications", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,6 +51,12 @@ export default function Job() {
       .catch((error) => {
         alert("There was an error processing your application!")
       });
+    } else {
+      alert('You have to be logged in to submit an application');
+      setTimeout(() => {
+        navigate("/login")
+      }, 1000);
+    }
   }
 
   return (
