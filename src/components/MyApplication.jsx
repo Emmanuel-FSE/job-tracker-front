@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
+import Swal from "sweetalert2";
 
 export default function Home() {
   const [applications, setApplications] = useState([]);
@@ -42,10 +43,18 @@ export default function Home() {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert("Application send successfully. Yaay!!")
+        Swal.fire({
+          title: "Application send successfully. Yaay!!",
+          icon: "info",
+          timer: 2000
+        });
       })
       .catch((error) => {
-        alert("There was an error processing your application edit!")
+        Swal.fire({
+          title: "There was an error processing yor application!",
+          icon: "error",
+          timer: 2000
+        });
       });
 
       setTimeout(() => {

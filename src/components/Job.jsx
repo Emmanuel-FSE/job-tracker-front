@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "./Header";
+import Swal from "sweetalert2";
 
 export default function Job() {
   let { id } = useParams();
@@ -46,16 +47,28 @@ export default function Job() {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert("Application send successfully. Yaay!!")
+        Swal.fire({
+          title: "Application send successfully. Yaay!!",
+          icon: "info",
+          timer: 2000
+        });
       })
       .catch((error) => {
-        alert("There was an error processing your application!")
+        Swal.fire({
+          title: "There was an error processing yor application!",
+          icon: "error",
+          timer: 2000
+        });
       });
     } else {
-      alert('You have to be logged in to submit an application');
+      Swal.fire({
+        title: "You have to be logged in to submit an application!",
+        icon: "error",
+        timer: 2000
+      });
       setTimeout(() => {
-        navigate("/login")
-      }, 1000);
+        navigate("/login");
+      }, 3000);
     }
   }
 
