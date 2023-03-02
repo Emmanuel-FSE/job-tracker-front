@@ -37,12 +37,12 @@ export default function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/applications" exact className="hover:underline">
+          <NavLink to="/applications" exact className="hover:underline cursor-pointer">
             All applications
           </NavLink>
         </li>
-        {11 !== parseInt(userId) ? <li onClick={myApplications} className="hover:underline">My applications</li> : ""}
-        <li onClick={handleLogout} className="hover:underline">
+        {11 !== parseInt(userId) ? <li onClick={myApplications} className="hover:underline cursor-pointer">My applications</li> : ""}
+        <li onClick={handleLogout} className="hover:underline cursor-pointer">
           LogOut
         </li>
       </ul>
