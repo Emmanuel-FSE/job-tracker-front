@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
+import moment from 'moment';
 
 export default function Home() {
   const [jobs, setJobs] = useState([]);
@@ -50,40 +52,43 @@ export default function Home() {
             {`Job Title: ${job.title}`}{" "}
           </div>
           <div className="flex flex-row justify-around">
-          {11 === parseInt(userId) ? (
-            <button
-              onClick={handleDelete}
-              id={job.id}
-              className="px-4 bg-red-600 rounded-lg"
-            >
-              Delete
-            </button>
-          ) : (
-            ""
-          )}
-          {11 === parseInt(userId) ? (
-            <a
-              href={`/edit-job/${job.id}`}
-              id={job.id}
-              className="px-4 py-2 bg-green-600 rounded-lg"
-            >
-              Edit
-            </a>
-          ) : (
-            ""
-          )}
+            {11 === parseInt(userId) ? (
+              <NavLink
+                to={`/edit-job/${job.id}`}
+                id={job.id}
+                className="px-4 py-2 bg-green-200 rounded-lg"
+              >
+                Edit
+              </NavLink>
+            ) : (
+              ""
+            )}
+            {11 === parseInt(userId) ? (
+              <button
+                onClick={handleDelete}
+                id={job.id}
+                className="px-4 bg-red-300 rounded-lg"
+              >
+                Delete
+              </button>
+            ) : (
+              ""
+            )}
           </div>
           <p className="text-gray-700 text-base">{job.description}</p>
         </div>
         <div className="px-6 pt-4 pb-2">
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <span className="inline-block bg-lime-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
             {`Company: ${job.company}`}
           </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <span className="inline-block bg-lime-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
             {`Location: ${job.location}`}
           </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <span className="inline-block bg-lime-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
             {`Salary => Ksh: ${job.salary}`}
+          </span>
+          <span className="inline-block bg-lime-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            Posted: {moment(job.created_at).fromNow()}
           </span>
         </div>
       </a>
@@ -93,7 +98,8 @@ export default function Home() {
   return (
     <div className="bg-gray-400">
       <Header />
-      <div className="p-10 text-xl font-bold font-serif rounded shadow-lg">
+      <div className="p-10 text-xl  bg-white font-bold font-serif rounded shadow-lg">
+        <h2 className="text-3xl text-center p-2 underline">Available jobs</h2>
         <p>
           Welcome to our website, the one-stop destination for job seekers to
           explore various employment opportunities and apply for their dream

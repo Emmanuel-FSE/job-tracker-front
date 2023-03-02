@@ -89,14 +89,14 @@ export default function Home() {
             <a href="#form"
               onClick={handleEdit}
               id={application.id}
-              className="bg-green-600 cursor-pointer px-4 py-1 rounded"
+              className="bg-lime-200 cursor-pointer px-4 py-1 rounded"
             >
               Edit
             </a>
             <span
               onClick={handleDelete}
               id={application.id}
-              className="bg-red-600 cursor-pointer px-4 py-1 rounded"
+              className="bg-red-300 cursor-pointer px-4 py-1 rounded"
             >
               Delete
             </span>
@@ -104,7 +104,7 @@ export default function Home() {
           <p className="text-gray-700 text-base">{application.description}</p>
         </div>
         <div className="px-6 pt-4 pb-2">
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <span className="inline-block bg-lime-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
             {`Job Title: ${application.job_title}`}
           </span>
         </div>
@@ -122,7 +122,7 @@ export default function Home() {
   return (
     <div className="bg-gray-400">
       <Header />
-      <div className="p-10 text-xl font-bold font-serif rounded shadow-lg">
+      <div className="p-10 text-xl bg-white font-bold font-serif rounded shadow-lg">
         <h1 className="text-3xl text-center mb-2 underline font-sans font-bold">
           My Applications Profile
         </h1>

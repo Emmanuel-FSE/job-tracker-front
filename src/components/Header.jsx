@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function Header() {
@@ -27,19 +27,19 @@ export default function Header() {
     }
   }
   return (
-    <div className="flex flex-row justify-around items-center bg-teal-600 font-bold p-4 text-gray-900 font-serif">
+    <div className="flex flex-row justify-around items-center bg-lime-400 font-bold p-4 text-gray-900 font-serif">
       <h1 className="text-3xl">"Job Tracker"</h1>
       <ul className="flex flex-row space-x-6">
-        {11 === parseInt(userId) ? <li><a href="/add-job" className="hover:underline">Add Job</a></li> : ""}
+        {11 === parseInt(userId) ? <li><NavLink to="/add-job" className="hover:underline">Add Job</NavLink></li> : ""}
         <li>
-          <a href="/" className="hover:underline">
+          <NavLink to="/" exact className="hover:underline">
             Jobs
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/applications" className="hover:underline">
+          <NavLink to="/applications" exact className="hover:underline">
             All applications
-          </a>
+          </NavLink>
         </li>
         <li onClick={myApplications} className="hover:underline">
           My applications
