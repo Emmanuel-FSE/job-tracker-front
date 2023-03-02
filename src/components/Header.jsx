@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 export default function Header() {
   const navigate = useNavigate();
+  let userId = localStorage.getItem("id")
 
   function handleLogout(e) {
     e.preventDefault();
@@ -29,6 +30,7 @@ export default function Header() {
     <div className="flex flex-row justify-around items-center bg-teal-600 font-bold p-4 text-gray-900 font-serif">
       <h1 className="text-3xl">"Job Tracker"</h1>
       <ul className="flex flex-row space-x-6">
+        {11 === parseInt(userId) ? <li><a href="/add-job" className="hover:underline">Add Job</a></li> : ""}
         <li>
           <a href="/" className="hover:underline">
             Jobs

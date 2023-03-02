@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Login({userId}) {
   const navigate = useNavigate();
@@ -24,7 +25,11 @@ function Login({userId}) {
       userId(user.id);
       setTimeout(() => navigate("/"), 2000);
     } else {
-      alert("Error during validation");
+      Swal.fire({
+        title: "Error during validation",
+        icon: "error",
+        timer: 2000
+      });
     }
   }
   return (

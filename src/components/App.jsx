@@ -7,6 +7,8 @@ import Register from "./Register";
 import Application from "./Application";
 import Job from "./Job";
 import MyApplication from "./MyApplication"
+import AddJob from "./AddJob";
+import EditJob from "./EditJob";
 
 function App() {
   const [id, setId] = useState(null);
@@ -23,7 +25,9 @@ function App() {
       <Route path="/register" element={<Register />}></Route>
       <Route path="/applications" element={<Application />}></Route>
       <Route path="/jobs/:id" element={<Job />}></Route>
+      <Route path="/edit-job/:id" element={<EditJob />}></Route>
       <Route path="/my-applications" element={<MyApplication />}></Route>
+      <Route path="/add-job" element={<AddJob />}></Route>
     </Routes>
   );
 }

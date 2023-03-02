@@ -1,19 +1,37 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
+import Swal from "sweetalert2";
 
 export default function Home() {
   const [jobs, setJobs] = useState([]);
+  let userId = localStorage.getItem("id");
 
   useEffect(() => {
     fetch("http://localhost:9292/jobs", {
       method: "GET",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     })
       .then((res) => res.json())
       .then((data) => setJobs(data));
   }, []);
+
+  function handleDelete(event) {
+    event.preventDefault();
+    fetch(`http://localhost:9292/jobs/${event.target.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      Swal.fire({
+        title: "Deleted successfully.",
+        icon: "success",
+        timer: 2000,
+      });
+    });
+  }
 
   const jobsDiv = jobs.map((job) => {
     return (
@@ -30,6 +48,30 @@ export default function Home() {
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">
             {`Job Title: ${job.title}`}{" "}
+          </div>
+          <div className="flex flex-row justify-around">
+          {11 === parseInt(userId) ? (
+            <button
+              onClick={handleDelete}
+              id={job.id}
+              className="px-4 bg-red-600 rounded-lg"
+            >
+              Delete
+            </button>
+          ) : (
+            ""
+          )}
+          {11 === parseInt(userId) ? (
+            <a
+              href={`/edit-job/${job.id}`}
+              id={job.id}
+              className="px-4 py-2 bg-green-600 rounded-lg"
+            >
+              Edit
+            </a>
+          ) : (
+            ""
+          )}
           </div>
           <p className="text-gray-700 text-base">{job.description}</p>
         </div>
