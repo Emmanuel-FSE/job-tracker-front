@@ -41,9 +41,7 @@ export default function Header() {
             All applications
           </NavLink>
         </li>
-        <li onClick={myApplications} className="hover:underline">
-          My applications
-        </li>
+        {11 !== parseInt(userId) ? <li onClick={myApplications} className="hover:underline">My applications</li> : ""}
         <li onClick={handleLogout} className="hover:underline">
           LogOut
         </li>
