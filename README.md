@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+Welcome to the Job Tracker!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Job tracker back end.
 
-## Available Scripts
+https://github.com/Emmanuel-FSE/job-tracker-app
 
-In the project directory, you can run:
+This is a simple web application that allows users to view job openings and submit applications for those jobs. Users can also view their past applications and edit or delete them if needed.
 
-### `npm start`
+Super users have additional privileges, including the ability to add new job openings and delete existing ones.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Getting Started
+To use this application, simply navigate to the website and create an account. Once you have created an account, you will be able to view available jobs and submit applications.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Usage
+Once you are logged in, you will see a list of available jobs on the home page. To view more information about a job, simply click on the job.
 
-### `npm test`
+To apply for a job, click on the job tou want and you will be taken to a page that has the application form and all about the job. You will be asked to fill that form with some basic information about yourself.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To view your past applications, click on the "My Applications" link in the navigation menu. From there, you can view your past applications, edit them, or delete them.
 
-### `npm run build`
+Super users can add new job openings by clicking on the "Add Job" button on the home page. They can also delete existing job openings by clicking on the "Delete" button next to the job title on the home page.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Contributing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you would like to contribute to this project, please fork the repository and submit a pull request.
+Fork this repo and clone it, run npm install for dependencies install.
+Fork the back end with the link provided above and run sudo bundle install to also install its dependencies
+You can the run rake server to start the backend and npm start on the front end.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
